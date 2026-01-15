@@ -1,0 +1,29 @@
+:e # Environment setup: https://mongoose.ws/documentation/tutorials/tools/
+
+CWD = $(realpath $(PWD))
+SDK_PATH ?= $(CWD)/pico-sdk
+RM = rm -rf
+MKBUILD = test -d build || mkdir build
+
+ifeq ($(OS),Windows_NT)
+  RM = cmd /C del /Q /F /S
+  MKBUILD = if not exist build mkdir build
+endif
+
+.PHONY: build
+
+all build: build/firmware.uf2
+
+build/firmware.uf2: $(SDK_PATH) $(wildcard *.c) $(wildcard *.h) $(wildcard mongoose/*.c) CMakeLists.txt Makefile
+	$(MKBUILD)
+	cd build && PICO_SDK_PATH=$(SDK_PATH) cmake -DPICO_BOARD="pico2_w" -G "Unix Makefiles" .. && make
+
+flash: build/firmware.uf2
+	picotool load $< -f
+
+clean:
+	rm -rf build
+
+$(SDK_PATH):
+	git clone -c advice.detachedHead=false --quiet --depth 1 -b 2.1.1 https://github.com/raspberrypi/pico-sdk $@
+	cd $@ && git submodule update --quiet --init

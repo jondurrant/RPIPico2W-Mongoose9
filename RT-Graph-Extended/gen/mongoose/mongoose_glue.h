@@ -33,8 +33,8 @@ extern "C" {
 #define WIZARD_MDNS_NAME ""
 
 #define WIZARD_ENABLE_WIFI 1
-#define WIZARD_WIFI_NAME "shb-ap"
-#define WIZARD_WIFI_PASS "jonandkevhome"
+//#define WIZARD_WIFI_NAME ""
+//#define WIZARD_WIFI_PASS ""
 #define WIZARD_ENABLE_WIFI_AP 0
 #define WIZARD_WIFI_AP_NAME "MyAp"
 #define WIZARD_WIFI_AP_PASS "MyApPass"
@@ -93,6 +93,13 @@ void glue_mdns_update_name(const char *newname);
 void glue_update_state(void);
 
 // Firmware Glue
+
+struct accel {
+  double x;
+  double y;
+  double z;
+};
+void glue_get_accel(struct accel *);
 
 struct angular {
   double yaw;
