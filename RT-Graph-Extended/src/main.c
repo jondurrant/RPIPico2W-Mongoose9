@@ -26,11 +26,11 @@ void initIMU(){
 	gpio_set_function(scl_pin, GPIO_FUNC_I2C);
 	gpio_pull_up(sda_pin);
 	gpio_pull_up(scl_pin);
-	i2c_init(i2c_default, 400 * 1000);
+	i2c_init(i2c0, 400 * 1000);
 
-	int8_t res = bno055_pico_init(&bno, i2c_default, BNO055_I2C_ADDR1);
+	int8_t res = bno055_pico_init(&bno, i2c0, BNO055_I2C_ADDR1);
 	if (res) {
-		res = bno055_pico_init(&bno, i2c_default, BNO055_I2C_ADDR2);
+		res = bno055_pico_init(&bno, i2c0, BNO055_I2C_ADDR2);
 	}
 	if (res) {
 		printf("BNO055 inilization failed!\n");

@@ -7,3 +7,6 @@
 [submodule "lib/pico-mpu9250"]
 	path = lib/pico-mpu9250
 	url = https://github.com/drankinatty/pico-mpu9250
+[submodule "lib/mongoose"]
+	path = lib/mongoose
+	url = https://github.com/cesanta/mongoose

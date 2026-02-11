@@ -33,7 +33,7 @@ target_link_libraries(mongoose PUBLIC
 	pico_cyw43_arch_none
 	)
 
-target_compile_definitions(mongoose PRIVATE
+target_compile_definitions(mongoose PUBLIC
     WIZARD_WIFI_NAME=\"$ENV{WIFI_SSID}\"
     WIZARD_WIFI_PASS=\"$ENV{WIFI_PASSWORD}\"
 )
