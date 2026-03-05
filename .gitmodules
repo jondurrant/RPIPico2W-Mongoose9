@@ -10,3 +10,6 @@
 [submodule "lib/mongoose"]
 	path = lib/mongoose
 	url = https://github.com/cesanta/mongoose
+[submodule "lib/pico-vfs"]
+	path = lib/pico-vfs
+	url = https://github.com/oyama/pico-vfs
